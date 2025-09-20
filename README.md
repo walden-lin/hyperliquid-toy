@@ -1,0 +1,2 @@
+# hyperliquid-toy
+toy demo
