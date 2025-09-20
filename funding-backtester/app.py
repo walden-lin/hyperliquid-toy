@@ -449,15 +449,29 @@ def show_theory_page():
 def main_application():
     """主应用逻辑"""
     # 加载事件配置
-    @st.cache_data
     def load_events():
         """加载事件配置"""
+        import os
+        
+        # 获取当前脚本所在目录
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        events_file = os.path.join(current_dir, 'events.json')
+        
+        # 调试信息（仅在开发环境显示）
+        if st.sidebar.checkbox("显示调试信息", value=False):
+            st.write(f"当前工作目录: {os.getcwd()}")
+            st.write(f"脚本目录: {current_dir}")
+            st.write(f"events.json 路径: {events_file}")
+            st.write(f"文件是否存在: {os.path.exists(events_file)}")
+            if os.path.exists(current_dir):
+                st.write(f"目录内容: {os.listdir(current_dir)}")
+        
         try:
-            with open('events.json', 'r', encoding='utf-8') as f:
+            with open(events_file, 'r', encoding='utf-8') as f:
                 events = json.load(f)
             return events
         except FileNotFoundError:
-            st.error("❌ 找不到 events.json 文件")
+            st.error(f"❌ 找不到 events.json 文件，路径: {events_file}")
             return []
         except json.JSONDecodeError:
             st.error("❌ events.json 文件格式错误")
