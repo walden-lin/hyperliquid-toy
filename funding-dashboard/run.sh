@@ -1,3 +1,8 @@
+API 请求失败: 422 Client Error: Unprocessable Entity for url: https://api.hyperliquid.xyz/info
+
+无法获取 ETH 资金费率数据，使用模拟数据
+
+
 #!/bin/bash
 
 # Crypto Funding Rate Dashboard 启动脚本

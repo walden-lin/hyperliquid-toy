@@ -41,3 +41,4 @@ echo ""
 # 启动 Streamlit 应用
 echo "🚀 启动应用..."
 streamlit run app.py --server.port 8501 --server.address localhost
+

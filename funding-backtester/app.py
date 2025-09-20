@@ -639,6 +639,10 @@ def main_application():
                 
                 st.success("✅ 回测执行成功")
                 
+            except Exception as e:
+                st.error(f"❌ 回测执行失败: {str(e)}")
+                st.stop()
+                
     else:
         # 策略对比执行
         st.info("🔄 正在运行多种策略对比分析...")
