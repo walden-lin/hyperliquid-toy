@@ -55,12 +55,18 @@ st.markdown("""
 
 def load_events():
     """加载事件配置"""
+    import os
+    
+    # 获取当前脚本所在目录
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    events_file = os.path.join(current_dir, 'events.json')
+    
     try:
-        with open('events.json', 'r', encoding='utf-8') as f:
+        with open(events_file, 'r', encoding='utf-8') as f:
             events = json.load(f)
         return events
     except FileNotFoundError:
-        st.error("❌ 找不到 events.json 文件")
+        st.error(f"❌ 找不到 events.json 文件，路径: {events_file}")
         return []
     except json.JSONDecodeError:
         st.error("❌ events.json 文件格式错误")
