@@ -142,12 +142,27 @@ def plot_funding_rate(df, event_name, event_time):
     
     # 添加事件时间线
     if event_time:
-        fig.add_vline(
+        # 使用 add_shape 和 add_annotation 替代 add_vline 来避免类型错误
+        fig.add_shape(
+            type="line",
+            x0=event_time,
+            x1=event_time,
+            y0=0,
+            y1=1,
+            yref="paper",
+            line=dict(color="orange", width=2, dash="dash")
+        )
+        fig.add_annotation(
             x=event_time,
-            line_dash="dash",
-            line_color="orange",
-            annotation_text=f"事件: {event_name}",
-            annotation_position="top"
+            y=1,
+            yref="paper",
+            text=f"事件: {event_name}",
+            showarrow=True,
+            arrowhead=2,
+            arrowcolor="orange",
+            bgcolor="white",
+            bordercolor="orange",
+            borderwidth=1
         )
     
     fig.update_layout(
